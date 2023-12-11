@@ -1,6 +1,6 @@
 const dbConn=require("../db/mysqlconnect")
 const stations=(req,res)=>{
-    dbConn.query("SELECT * FROM istasyonlar",(err,rows)=>{
+    dbConn.query("CALL getStations()",(err,rows)=>{
         if(!err){
             res.json(rows)
         }else{

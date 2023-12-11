@@ -1,5 +1,52 @@
-async function initMap() {
+fetch('http://localhost:3000/api/stations')
+.then(response => response.json())
+.then(data => {
+  console.log(data[0][0].lat)
+  let id = 1
+  for (var i = 1; i<data[0].length; i++) {
+
+    let lat = data[0][i].lat
+    let lng = data[0][i].lng
+    let hizmet_saati = data[0][i].hizmet_saati
+    if(hizmet_saati.includes("|"))
+    {
+      hizmet_saati = "7/24 açık"
+    }
+    else{
+      hizmet_saati = "Pazartesi-Cuma 08:00-17:00"
+    }
+    properties.push({
+      id: id,
+      code: data[0][i].istasyon_kodu,
+      city: data[0][i].iller_ad,
+      model_name: data[0][i].model_adi,
+      model_desc: data[0][i].model_aciklama,
+      plug_type: data[0][i].soket_tipi,
+      plug_number: data[0][i].soket_sayisi,
+      aktiflik: data[0][i].aktiflik = 1? "Aktif" : "Kullanım Dışı",
+      address: data[0][i].adres,
+      indoor: data[0][i].lokasyon_tipi=0? "İç Mekan" : "Dış Mekan",
+      hizmetsaati: hizmet_saati,
+      otopark: data[0][i].otopark,
+      parksure: data[0][i].park_suresi,
+      
+      type: "charging-station",
+      position: {
+        lat: lat,
+        lng: lng,
+      },
+    })
+    id+=3
+    
+
+  }
+  console.log(properties)
   
+})
+.catch(err => console.log(err))
+
+async function initMap() {
+    
     // Request needed libraries.
     const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
@@ -49,16 +96,20 @@ async function initMap() {
     lastHighlightedMarker.content.classList.remove("highlight");
     lastHighlightedMarker.zIndex = null;
   }
+  let last_table = null;
   function toggleTable(tableNumber) {
-    for (var i = 1; i <= 3; i++) {
-      var tableId = 'table' + i;
+    
+      var tableId = 'table' + tableNumber;
       var table = document.getElementById(tableId);
-      if (i === tableNumber) {
-        table.style.display = (table.style.display === 'none' || table.style.display === '') ? 'block' : 'none';
-      } else {
-        table.style.display = 'none';
+      
+      if(last_table != null){
+        last_table.style.display = 'none';
       }
-    }
+      table.style.display = 'block';
+      last_table = table;
+      
+      
+    
   }
   
   function buildContent(property) {
@@ -71,45 +122,45 @@ async function initMap() {
 </div>
 <div class="details">
   <div class="btn-container">
-  <button onclick = toggleTable(1)>İstasyon</button>
-  <button onclick = toggleTable(2)>Lokasyon</button>
-  <button onclick = toggleTable(3)>Hizmetler</button>
+  <button onclick = toggleTable(${property.id})>İstasyon</button>
+  <button onclick = toggleTable(${property.id+1})>Lokasyon</button>
+  <button onclick = toggleTable(${property.id+2})>Hizmetler</button>
     
     <i onclick = closeHighlight() style="position:absolute;
-    right: 10px; top: 10px;" class="fa-solid fa-circle-xmark fa-2xl"></i>
+    right: 10px; top: 15px;" class="fa-solid fa-circle-xmark fa-2xl"></i>
 
 
   </div>
   <div class="descs">
-    <div id="table1">
+    <div id="table${property.id}" style="display:none">
     <table  width='500px' class="table-hover" >
       <tr>
-        <th>istasyon kodu</th>
+        <th>İstasyon Kodu</th>
         <td>${property.code}</td>
       </tr>
       <tr>
-        <th>şehir</th>
+        <th>Şehir</th>
         <td>${property.city}</td>
       </tr>
       <tr>
-        <th>model adı</th>
+        <th>Model Adı</th>
         <td>${property.model_name}</td>
       </tr>
       <tr>
-        <th>model açıklaması</th>
+        <th>Model Açıklaması</th>
         <td>${property.model_desc}</td>
       </tr>
       <tr>
-        <th>soket tipi</th>
-        <td>${property.plug_type} ${property.plug_number}</td>
+        <th>Soket</th>
+        <td>${property.plug_type} / ${property.plug_number} soket mevcut </td>
       </tr>
       <tr>
-        <th>Aktiflik</th>
+        <th>Durum</th>
         <td>${property.aktiflik}</td>
       </tr>
     </table>
     </div>
-    <div id="table2" style="display:none">
+    <div id="table${property.id +1}" style="display:none">
     <table  width='500px' class="table-hover" >
     <tr>
       <th>Adres</th>
@@ -127,19 +178,19 @@ async function initMap() {
 
   </table>
   </div>
-    <div id="table3" style="display:none">
+    <div id="table${property.id+2}" style="display:none">
     <table  width='500px' class="table-hover" >
     <tr>
-      <th>Hizmet Saatleri</th>
+      <th>Hizmet Günleri</th>
       <td>${property.hizmetsaati}</td>
     </tr>
     <tr>
-    <th>Otopark</th>
+    <th>Otopark Sayısı</th>
     <td>${property.otopark}</td>
   </tr>
     <tr>
       <th>Park Süresi</th>
-      <td>${property.parksure}</td>
+      <td>${property.parksure} Dakika</td>
     </tr>
 
 
@@ -151,46 +202,14 @@ async function initMap() {
       `;
     return content;
   }
+
+  // getstations.jsden gelen verileri buraya yapıştır
+  
+
   
   const properties = [
-    {
-      code: "TR-ADA-002",
-      city: "Adana",
-      model_code: "ABBTER184SS",
-      model_name: "ABB Terra 184",
-      model_desc: "ABB Terra 184",
-      plug_type: "CCS",
-      plug_number: 2,
-      indoor: "No",
-      hizmetsaati: "pazartesi-cuma 08:00-18:00",
-      otopark: 20,
-      parksure: 2000,
-      aktiflik: "Active",
-      address: "Yıldırım Beyazıt Mah. Kozan Cad. No:755/A, Sarıçam/Adana",
-      type: "charging-station",
-
-      position: {
-        lat: 39.9223937,
-        lng: 32.857965,
-      },
-    },
-
-    {
-      address: "Yıldırım Beyazıt Mah. Kozan Cad. No:755/A, Sarıçam/Adana",
-      code: "TR-ADA-004",
-      hizmetsaati: "pazartesi-cuma 08:00-18:00",
-      type: "car",
-      otopark: 20,
-      parksure: 2000,
-      aktiflik: "Active",
-      position: {
-        lat: 37.50024109655184,
-        lng: -122.38528451834352,
-      },
-    },
-
-
-  
+    
+   
   ];
   
   initMap();
