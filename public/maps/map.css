@@ -1,5 +1,5 @@
 :root {
-    --building-color: #FF9800;
+    --building-color: #D25154;
     --house-color: #4262D1;
     --shop-color: #7B1FA2;
     --warehouse-color: #558B2F;
@@ -325,15 +325,13 @@ td.text-right {
   /*
    * Building icon colors.
    */
-  .property.highlight:has(.fa-building) .icon {
-    color: var(--building-color);
-  }
   
-  .property:not(.highlight):has(.fa-building) {
+  
+  .property:not(.highlight):has(.fa-store-slash) {
     background-color: var(--building-color);
   }
   
-  .property:not(.highlight):has(.fa-building)::after {
+  .property:not(.highlight):has(.fa-store-slash)::after {
     border-top: 9px solid var(--building-color);
   }
   
