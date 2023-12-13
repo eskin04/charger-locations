@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Harita</title>
+    <title>DarkPan - Bootstrap 5 Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -25,11 +25,10 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -45,6 +44,7 @@
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
+            
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="/" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-charging-station me-2"></i>STATION</h3>
@@ -52,7 +52,7 @@
                 
                 <div class="navbar-nav w-100">
                     <a href="/" class="nav-item nav-link mb-2"><i class="fa fa-tachometer-alt me-2"></i>Ana Sayfa</a>
-                    <a href="/maps" class="nav-item nav-link active mb-2"><i class="fa fa-map me-2"></i>Harita</a>
+                    <a href="/maps" class="nav-item nav-link mb-2"><i class="fa fa-map me-2"></i>Harita</a>
                     <a href="/station" class="nav-item nav-link mb-2"><i class="fa fa-charging-station me-2"></i>İstasyon</a>
                     <a href="/city" class="nav-item nav-link mb-2"><i class="fa fa-city me-2"></i>İller</a>
                     
@@ -63,16 +63,22 @@
 
 
         <!-- Content Start -->
-        <div class="content" style="overflow: hidden; position: relative;">
-            <div class="sidebar-toggler flex-shrink-0" style="background-color: #191C24; width: 40px; height: 40px; position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; cursor: pointer;">
-                <a href="#">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-           <iframe src="mapiframe.html" frameborder="0" width="100%" height="100%"></iframe>
+        <div class="content">
+           
+
+
+            <!-- 404 Start -->
+            <div id="wrap"></div>
+            <!-- 404 End -->
+
+
+           
         </div>
         <!-- Content End -->
 
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->

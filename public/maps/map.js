@@ -4,7 +4,7 @@ fetch('http://localhost:3000/api/stations')
 .then(data => {
   console.log(data[0][0].lat)
   let id = 1
-  for (var i = 1; i<data[0].length; i++) {
+  for (var i = 1; i<300; i++) {
 
     let lat = data[0][i].lat
     let lng = data[0][i].lng
@@ -53,10 +53,15 @@ async function initMap() {
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     const center = { lat: 39.3223937, lng: 35.157965 };
     const map = new Map(document.getElementById("map"), {
-      zoom: 6.75,
+      zoom: 6.25,
       center,
       mapId: "4504f8b37365c3d0",
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: google.maps.ControlPosition.TOP_CENTER,
+      },
     });
+    
   
     for (const property of properties) {
       const AdvancedMarkerElement = new google.maps.marker.AdvancedMarkerElement({
@@ -81,7 +86,6 @@ async function initMap() {
 
   function toggleHighlight(markerView, property) {
     last_table = markerView.content.id;
-    console.log('tıklandı')
     if (lastHighlightedMarker) {
         lastHighlightedMarker.content.classList.remove("highlight");
         lastHighlightedMarker.zIndex = null;
@@ -243,4 +247,3 @@ async function initMap() {
   ];
   
   initMap();
-

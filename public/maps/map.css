@@ -1,8 +1,8 @@
 :root {
     --building-color: #D25154;
-    --house-color: #4262D1;
-    --shop-color: #7B1FA2;
-    --warehouse-color: #558B2F;
+    --house-color: #2b5f9a;
+    --border2-color: #F37679;
+    --border-color: #4689bf;
   }
   
   /*
@@ -15,7 +15,7 @@
     padding: 0;
   }
 
-  
+
   /*
    * Always set the map height explicitly to define the size of the div element
    * that contains the map.
@@ -23,6 +23,7 @@
   #map {
     height: 100%;
     width: 100%;
+    background-color: black;
   }
   
   /*
@@ -46,14 +47,14 @@
   }
   
   .property::after {
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
     border-top: 9px solid #FFFFFF;
     content: "";
     height: 0;
     left: 50%;
     position: absolute;
-    top: 95%;
+    top: 100%;
     transform: translate(-50%, 0);
     transition: all 0.3s ease-out;
     width: 0;
@@ -316,10 +317,12 @@ td.text-right {
   
   .property:not(.highlight):has(.fa-charging-station) {
     background-color: var(--house-color);
+    border: 5px solid var(--border-color);
   }
   
   .property:not(.highlight):has(.fa-charging-station)::after {
-    border-top: 9px solid var(--house-color);
+    border-top: 9px solid var(--border-color);
+    
   }
   
   /*
@@ -329,10 +332,12 @@ td.text-right {
   
   .property:not(.highlight):has(.fa-store-slash) {
     background-color: var(--building-color);
+    border: 5px solid var(--border2-color);
+
   }
   
   .property:not(.highlight):has(.fa-store-slash)::after {
-    border-top: 9px solid var(--building-color);
+    border-top: 9px solid var(--border2-color);
   }
   
   /*
