@@ -57,6 +57,8 @@
                     <a href="/maps" class="nav-item nav-link mb-2"><i class="fa fa-map me-2"></i>Harita</a>
                     <a href="/station" class="nav-item nav-link mb-2"><i class="fa fa-charging-station me-2"></i>İstasyon</a>
                     <a href="/city" class="nav-item nav-link mb-2"><i class="fa fa-city me-2"></i>İller</a>
+                    <a href="/model" class="nav-item nav-link mb-2"><i class="fa fa-city me-2"></i>Modeller</a>
+
                     
                 </div>
             </nav>
@@ -76,7 +78,7 @@
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Toplam İstasyon Sayısı</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <h6 id="totalStation" class="mb-0">$1234</h6>
                             </div>
                         </div>
                     </div>
@@ -85,7 +87,7 @@
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Toplam Nüfus</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <h6 id="totalPopulation" class="mb-0">$1234</h6>
                             </div>
                         </div>
                     </div>
@@ -102,18 +104,18 @@
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">İllere Göre İstasyon Oranı</h6>
-                                <a href="">Show All</a>
+                                <a href="/city">Hepsini Göster</a>
                             </div>
-                            <div id="istasyonpie" style="width: 550px; height: 400px;"></div>
+                            <div id="istasyonpie" style="width: 500px; height: 500px;"></div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">İller Nüfus Oranları</h6>
-                                <a href="">Show All</a>
+                                <a href="/city">Hepsini Göster</a>
                             </div>
-                            <div id="nufuspie" style="width: 550px; height: 400px;"></div>
+                            <div id="nufuspie" style="width: 500px; height: 500px;"></div>
 
                         </div>
                     </div>
@@ -127,7 +129,7 @@
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">İstasyonlarda Kullanılan Modellerin Sayısı</h6>
-                        <a href="">Show All</a>
+                        <a href="/model">Hepsini Göster</a>
                     </div>
                     <div class="table-responsive">
                         <div id="chart_div" style="width: 100%; height: 500px; overflow: hidden;"></div>

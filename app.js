@@ -15,6 +15,12 @@ app.get('/city',(req,res)=>{
 app.get('/station',(req,res)=>{
     res.sendFile(path.join(__dirname,"/public/station/istasyon.html"))
 })
+app.get('/model',(req,res)=>{
+    res.sendFile(path.join(__dirname,"/public/model/model.html"))
+})
+app.get('/city/:id',(req,res)=>{
+    res.sendFile(path.join(__dirname,"/public/city/id/ilid.html"))
+})
 
 //Midllewares
 app.use(express.json({limit:'50mb',extended:true,parameterLimit:50000}))

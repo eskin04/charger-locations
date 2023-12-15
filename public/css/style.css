@@ -5,6 +5,10 @@
     --light: #6C7293;
     --dark: linear-gradient(90deg, rgba(20,30,48,1) 0%, rgba(30,46,63,1) 100%);
 }
+* {
+    margin: 0px;
+    padding: 0px;
+}
 
 h3 {
     font-size: 32px;

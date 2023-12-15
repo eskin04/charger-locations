@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <title>İl Analiz</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../../css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="/" class="navbar-brand mx-4 mb-3">
+                    <h3><i class="fa fa-charging-station me-2"></i>STATION</h3>
+                </a>
+                
+                <div class="navbar-nav w-100">
+                    <a href="/" class="nav-item nav-link mb-2"><i class="fa fa-tachometer-alt me-2"></i>Ana Sayfa</a>
+                    <a href="/maps" class="nav-item nav-link mb-2"><i class="fa fa-map me-2"></i>Harita</a>
+                    <a href="/station" class="nav-item nav-link mb-2"><i class="fa fa-charging-station me-2"></i>İstasyon</a>
+                    <a href="/city" class="nav-item nav-link mb-2"><i class="fa fa-city me-2"></i>İller</a>
+                    <a href="/model" class="nav-item nav-link mb-2"><i class="fa fa-city me-2"></i>Modeller</a>
+
+                    
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            
+            <div class="container-fluid p-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <h3 id="iladi"></h3>
+                    <h6 id="havadurumu"></h6>
+                </div>
+            </div>
+            <!-- Toplam İstasyon Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4  justify-content-md-around">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-plane fa-3x text-primary"></i>
+                            <div class="" style="width: 160px;">
+                                <p class="mb-2">Havalimanı Sayısı</p>
+                                <h6 id="havalimani" class="mb-0">0</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-store fa-3x text-primary"></i>
+                            <div class="" style="width: 160px;">
+                                <p class="mb-2">Avm Sayısı</p>
+                                <h6 id="avm" class="mb-0">0</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-cloud-rain fa-3x text-primary"></i>
+                            <div class="" style="width: 160px;">
+                                <p class="mb-2">Ortalama Yıllık Yağış</p>
+                                <h6 id="yağış" class="mb-0">0</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="row g-4  justify-content-md-around mt-3">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-car fa-3x text-primary"></i>
+                            <div class="" style="width: 160px;">
+                                <p class="mb-2">OtoPark Sayısı</p>
+                                <h6 id="otopark" class="mb-0">0</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-globe fa-3x text-primary"></i>
+                            <div class="" style="width: 160px;">
+                                <p class="mb-2">Fay Mesafesi</p>
+                                <h6 id="fay" class="mb-0">0</h6>
+                            </div>
+                        </div>
+                    </div><div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-car-side fa-3x text-primary"></i>
+                            <div class="" style="width: 160px;">
+                                <p class="mb-2">Oto Yıkama Sayısı</p>
+                                <h6 id="otoyıkama" class="mb-0">0</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <!-- Toplam İstasyon End -->
+
+
+           
+
+
+            <!-- Çubuk Grafik Start -->
+            <div class="container-fluid pt-4 px-4 d-flex justify-content-center">
+                <div id="myDiv" style="width: 1000px; height: 1000px;" class="bg-secondary text-center rounded ">
+                      
+                      
+                        
+                        
+                </div>
+            </div>
+            <!-- Çubuk Grafik End -->
+
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" style="display: none;" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../js/main.js"></script>
+    
+    <script >
+        // Enter a speed between 0 and 180
+var level = 0;
+
+// Trig to calc meter point
+function levelToDegrees() {
+    var degrees = 180 - level,
+	 radius = .5;
+var radians = degrees * Math.PI / 180;
+var x = radius * Math.cos(radians);
+var y = radius * Math.sin(radians);
+
+// Path: may have to change to create a better triangle
+var mainPath = 'M -.0 -0.025 L .0 0.025 L ',
+	 pathX = String(x),
+	 space = ' ',
+	 pathY = String(y),
+	 pathEnd = ' Z';
+var path = mainPath.concat(pathX,space,pathY,pathEnd);
+const config ={
+    displayModeBar: false,
+}
+var data = [{ type: 'scatter',
+   x: [0], y:[0],
+	marker: {size: 28, color:'850000'},
+	showlegend: false,
+	name: 'Puan',
+	text: level,
+	hoverinfo: 'text+name',
+},
+
+
+
+    
+  { values: [50/6, 50/6, 50/6, 50/6, 50/6, 50/6, 50],
+  rotation: 90,
+  text: ['Efsanevi', 'Üstün', 'İyi', 'Orta',
+			'Nötr', 'Kötü', ''],
+  textinfo: 'text',
+  textposition:'inside',
+  textfont:{
+    size : 14,
+    color: '#dae6f9'
+  },	  
+  marker: {colors:['rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
+						 'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
+						 'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
+						 'rgba(255, 255, 255, 0)']},
+  labels: ['150-180', '120-150', '90-120', '60-90', '30-60', '0-30', ''],
+  hoverinfo: 'label',
+  hole: .5,
+  type: 'pie',
+  showlegend: false
+}];
+
+var layout = {
+  shapes:[{
+      type: 'path',
+      path: path,
+      fillcolor: '850000',
+      line: {
+        color: '850000'
+      }
+    }],
+    plot_bgcolor:"#191C24   ",
+    paper_bgcolor:"#191C24",
+  title: '<b>İL Analiz</b> <br> Göstergesi',
+  titlefont: {size: 20, color:'#dae6f9'},
+  height: 1000,
+  width: 1000,
+  xaxis: {zeroline:false, showticklabels:false,
+			 showgrid: false, range: [-1, 1]},
+  yaxis: {zeroline:false, showticklabels:false,
+			 showgrid: false, range: [-1, 1]}
+};
+
+Plotly.newPlot('myDiv', data, layout,config, {showSendToCloud:true});
+}
+
+    const href = window.location.href;
+    const id = href.split("/city/")[1];
+    let puan=0;
+    fetch(`http://localhost:3000/api/cities/${id}`)
+    .then(res => res.json())
+    .then(data => {
+        data = data[0]
+        document.getElementById("havalimani").innerHTML = data.havalimani_sayisi;
+        document.getElementById("avm").innerHTML = data.avm_sayisi;
+        document.getElementById("yağış").innerHTML = `${data.yillik_yagis} mm`;
+        document.getElementById("otopark").innerHTML = data.otopark_sayisi;
+        document.getElementById("fay").innerHTML = `${data.fay_hattina_yakinlik} km`;
+        document.getElementById("otoyıkama").innerHTML = data.otoyikama_sayisi;
+        document.getElementById("iladi").innerHTML = data.iller_ad;
+        let nufus = data.nufus_23;
+        let istasyon = data.istasyon_sayisi;
+        if(istasyon == 0)
+            istasyon = 1;
+        let oran = nufus/istasyon;
+        if(oran < 20000)
+            puan += 10;
+        else if(oran < 160000)
+            puan += 20;
+        else if(oran < 300000)
+            puan += 30;
+        else if(oran < 440000)
+            puan += 40;
+        else if(oran < 580000)
+            puan += 50;
+        else
+            puan += 60;
+
+        let avm = data.avm_sayisi;
+        if(avm==0)
+            puan += 5;
+        else if(avm < 2)
+            puan += 10;
+        else if(avm < 4)
+            puan += 15;
+        else if(avm < 6)
+            puan += 20;
+        else if(avm < 8)
+            puan += 25;
+        else
+            puan += 30;
+
+        let OtoPark = data.otopark_sayisi;
+        if(OtoPark<11)
+            puan += 5;
+        else if(OtoPark < 17)
+            puan += 10;
+        else if(OtoPark < 23)
+            puan += 15;
+        else if(OtoPark < 29)
+            puan += 20;
+        else if(OtoPark < 35)
+            puan += 25;
+        else
+            puan += 30;
+
+
+        let yillikyagis = data.yillik_yagis;
+        if(yillikyagis>1500)
+            puan += 0;
+        else if(yillikyagis > 1250)
+            puan += 5;
+        else if(yillikyagis > 1000)
+            puan += 10;
+        else if(yillikyagis > 750)
+            puan += 15;
+        else if(yillikyagis > 500)
+            puan += 20;
+        else if(yillikyagis > 250)
+            puan += 25;
+        else
+            puan += 30;
+
+        let fay = data.fay_hattina_yakinlik;
+        if(fay<80)
+            puan += 5;
+        else if(fay < 160)
+            puan += 10;
+        else if(fay < 240)
+            puan += 15;
+        else if(fay < 320)
+            puan += 20;
+        else if(fay < 400)
+            puan += 25;
+        else
+            puan += 30;
+
+        console.log(puan);
+        level = puan;
+        levelToDegrees()
+        
+
+    })
+
+    fetch(`http://localhost:3000/api/weather/${id}`)
+    .then(res => res.json())
+    .then(data => {
+        
+        for(let i=0;i<data.length;i++){
+
+            document.getElementById("havadurumu").innerHTML += `${data[i].hava_kosullari} `;
+        }
+    })
+    </script>
+</body>
+
+</html>

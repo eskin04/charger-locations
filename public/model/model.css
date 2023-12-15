@@ -1,0 +1,151 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.h-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.h-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight:600;
+    text-align: center;
+    font-style: italic;
+    color: #a0a0a0;
+
+    
+}
+.content2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.content2:before {
+    content: '';
+    pointer-events: none;
+    right: 0px;
+    height: 100%;
+    position: absolute;
+    width: 250px;
+    z-index: 100;
+    background: linear-gradient(90deg, rgba(242, 243, 248,0) 0%, #283c55 100%);
+}
+.btn {
+    min-width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    background: #fff;
+    border: 0px;
+    outline: none;
+    cursor: pointer;
+    z-index: 200;
+    margin: 10px;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.08);
+    transition: all .25s ease;
+}
+.btn:hover {
+    transform: translate(0, -10px);
+    box-shadow: 0px 17px 35px 0px rgba(0,0,0,.07);
+}
+.btn i {
+    font-size: 1.6rem;
+}
+.con-cards {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    overflow: auto;
+    padding-top: 100px;
+    padding-left:40px;
+    padding-right: 50px;
+    scroll-behavior: smooth
+}
+.con-cards::-webkit-scrollbar {
+    height: 0px;
+}
+.con-cards:after {
+    content: '';
+    display: block;
+    min-width: 20px;
+    height: 100px;
+    position: relative;
+}
+.card {
+    width: 300px;
+    min-width: 300px;
+    height: auto;
+    background: #191C24;
+    border-radius: 30px;
+    position: relative;
+    z-index: 10;
+    margin: 25px;
+    min-height: 356px;
+    transition: all .25s ease;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.08);
+    cursor: pointer;
+}
+.card:hover {
+    transform: translate(0, -10px);
+    box-shadow: 0px 17px 35px 0px rgba(0,0,0,.07);
+}
+.card:hover .con-img {
+    transform: translate(0,-15px);
+}
+.card:hover .con-img img.blur{
+    opacity: .45;
+    transform: translate(-10px, 26px) scale(.85);
+}
+.plugtext {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    left: 0px;
+    top: 0px;
+    padding: 15px;
+    font-size:xx-large;
+    font-weight: 700;
+}
+.card .sokettext {
+    position: absolute;
+    left: 0px;
+    top: 35px;
+    padding: 15px;
+    font-size: 1.3rem;
+    font-family: 'oswald', sans-serif;
+    font-weight: 700;
+}
+.card .con-text {
+    padding: 20px;
+    color: #F1E2E2;
+    
+}
+.card .con-img {
+    /* transform: translate(0,-90px); */
+    width: calc(100% - 60px);
+    margin: 0px 30px;
+    margin-top: -90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .35s ease-out;
+}
+.card img {
+    height: 300px;
+}
+.card img.blur {
+    position: absolute;
+    filter: blur(15px);
+    z-index: -1;
+    opacity: .35;
+    transform: translate(-10px, 10px) scale(.85);
+    transition: all .35s ease-out;
+}
