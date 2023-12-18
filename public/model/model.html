@@ -33,9 +33,15 @@
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./model.css">
+    
+        <!-- code here -->
+        
+    
 </head>
 
 <body>
+   
+    
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -67,8 +73,40 @@
 
 
         <!-- Content Start -->
-        <div class="content">
+        <div class="content" style="position: relative;">
             
+            <div id="form" class="form" style=" display: none; position:absolute; top:50%; left: 48%; transform: translate(-50%,-50%); z-index: 999999;">
+            
+                <form method="post" class="card-form" action="/api/model">
+                    <div class="input">
+                        <input type="text" id="model_kodu" name="model_kodu" class="input-field"  required/>
+                        <label class="input-label">Model Kodu</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="model_adi" id="model_adi" class="input-field" required/>
+                        <label class="input-label">Model Adı</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="model_aciklama" id="model_aciklama" class="input-field" required/>
+                        <label class="input-label">Model Açıklaması</label>
+                    </div>
+              <div class="input">
+                        <input type="text" name="soket_tipi" id="soket_tipi" class="input-field" required/>
+                        <label class="input-label">Soket Tipi</label>
+                    </div>
+              <div class="input">
+                        <input type="text" name="soket_sayisi" id="soket_sayisi" class="input-field" required/>
+                        <label class="input-label">Soket Sayısı</label>
+                    </div>
+                    <div class="action">
+                        <button type="submit"  class="action-button">Ekle</button>
+                    </div>
+                </form>
+                
+            </div>
+            
+            <button onclick="toggleForm()" class="bubbly-button">Model Ekle</button>
+
             <div class="content2">
                 
                 <div class="con-cards" id="modelCards">

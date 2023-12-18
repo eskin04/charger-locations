@@ -3,6 +3,7 @@ const router=require('./routers')
 const path=require("path")
 require('dotenv/config')
 const app = express()
+app.use(express.urlencoded());
 
 //Static files
 app.use(express.static(path.join(__dirname,"/public")))
@@ -21,6 +22,8 @@ app.get('/model',(req,res)=>{
 app.get('/city/:id',(req,res)=>{
     res.sendFile(path.join(__dirname,"/public/city/id/ilid.html"))
 })
+
+
 
 //Midllewares
 app.use(express.json({limit:'50mb',extended:true,parameterLimit:50000}))
