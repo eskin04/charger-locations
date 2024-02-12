@@ -25,6 +25,8 @@ app.get('/city/:id',(req,res)=>{
 
 
 
+
+
 //Midllewares
 app.use(express.json({limit:'50mb',extended:true,parameterLimit:50000}))
 app.use('/api',router)
